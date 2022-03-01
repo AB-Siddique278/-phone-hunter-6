@@ -14,8 +14,8 @@ const searchPhone = () => {
     // console.log(url);
     
     fetch(url)
-  .then(response => response.json())
-  .then(data => {
+      .then(response => response.json())
+      .then(data => {
     if(data.data==null){
       document.getElementById('spinner').style.display='block';
     }
@@ -29,7 +29,7 @@ const searchPhone = () => {
     
   
 }
-
+                  //Main Product funcation
 
 const displaySearchResult = data =>{
     console.log(data);
@@ -72,6 +72,7 @@ const loadPhoneName = id=>{
 
 
 }
+            // Details section
 
 const displayphoneDetail = phone =>{
     const countryDiv = document.getElementById('phone-detail');
@@ -90,7 +91,7 @@ const displayphoneDetail = phone =>{
                 
                 <br> <span class="fw-bold">Brand: </span> ${phone.data.brand}
                 
-                <br> <span class="fw-bold">ReleaseDate: </span> ${phone.data.releaseDate ? phone.data.releaseDate :"on info"}
+                <br> <span class="fw-bold">ReleaseDate: </span> ${phone.data.releaseDate ? phone.data.releaseDate :"No ReleaseDate info"}
 
                  <br> <span class="fw-bold">ChipSet: </span> ${phone.data.mainFeatures.storage}
                  <br><span class="fw-bold">Memory: </span> ${phone.data.mainFeatures.memory}
