@@ -1,6 +1,9 @@
 const searchPhone = () => {
     document.getElementById('search-Result').innerHTML=""
     document.getElementById('spinner').style.display="block";
+
+    
+    
     const searchFild = document.getElementById('input-section');
     
     const searchText = searchFild.value;
@@ -22,9 +25,13 @@ const searchPhone = () => {
     else{
       displaySearchResult(data.data);
       document.getElementById('spinner').style.display='none';
+      // document.getElementById('error').style.display='block';
+
+
     }
 
   })
+ 
     
     
   
@@ -79,15 +86,15 @@ const displayphoneDetail = phone =>{
     countryDiv.innerHTML=`
 
     <h2></h2>
-    <div class="card mb-3" style="max-width: 540px;">
+    <div class="card mb-3 mt-3">
         <div class="row g-0">
         <div class="col-md-4">
-        <img src="${phone.data.image}" class="img-fluid rounded-start" alt="...">
+             <img src="${phone.data.image}" class="img-fluid mt-5 rounded mx-auto d-block" alt="...">
         </div>
             <div class="col-md-8">
             <div class="card-body">
-                <h5 class="card-title">${phone.data.name}</h5>
-                <p class="card-text lh-base">
+                <h5 class="card-title fw-bold">${phone.data.name}</h5>
+                <p class="card-text lh-lg">
                 
                 <br> <span class="fw-bold">Brand: </span> ${phone.data.brand}
                 
