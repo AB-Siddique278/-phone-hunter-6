@@ -1,10 +1,13 @@
 const searchPhone = () => {
-    
+    document.getElementById('search-Result').innerHTML=""
+    document.getElementById('spinner').style.display="block";
     const searchFild = document.getElementById('input-section');
+    
     const searchText = searchFild.value;
     console.log(searchText);
 
     searchFild.value = '';
+    
 
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
 
@@ -12,7 +15,16 @@ const searchPhone = () => {
     
     fetch(url)
   .then(response => response.json())
-  .then(data => displaySearchResult(data.data))
+  .then(data => {
+    if(data.data==null){
+      document.getElementById('spinner').style.display='block';
+    }
+    else{
+      displaySearchResult(data.data);
+      document.getElementById('spinner').style.display='none';
+    }
+
+  })
     
     
   
