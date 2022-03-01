@@ -36,7 +36,7 @@ const displaySearchResult = data =>{
             <h5 class="card-title">Name: ${phoneData.phone_name}</h5>
             <h6>Brand: ${phoneData.brand}</h6>
             <div>
-            <button onclick="loadPhoneName('${phoneData.phone_name}')" type="button" class="btn btn-primary">Show Details</button>
+            <button onclick="loadPhoneName('${phoneData.slug}')" type="button" class="btn btn-primary">Show Details</button>
             
             </div>
 
@@ -49,14 +49,14 @@ const displaySearchResult = data =>{
     })
 }
 
-const loadPhoneName = iphone=>{
+const loadPhoneName = id=>{
 
-    const url =`https://openapi.programming-hero.com/api/phones?search=${iphone}`;
+    const url =`https://openapi.programming-hero.com/api/phone/${id}`;
     console.log(url);
 
     fetch(url)
         .then(response => response.json())
-        .then(data => displayphoneDetail(data.data[0]));
+        .then(data => displayphoneDetail(data));
 
 
 }
@@ -67,15 +67,38 @@ const displayphoneDetail = phone =>{
 
     <h2></h2>
     <div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
+        <div class="row g-0">
         <div class="col-md-4">
-        <img src="${phone.image}" class="img-fluid rounded-start" alt="...">
+        <img src="${phone.data.image}" class="img-fluid rounded-start" alt="...">
         </div>
             <div class="col-md-8">
             <div class="card-body">
-                <h5 class="card-title">${phone.phone_name}</h5>
-                <p class="card-text"> ${phone.brand}</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <h5 class="card-title">${phone.data.name}</h5>
+                <p class="card-text lh-base">
+                
+                <br> <span class="fw-bold">Brand: </span> ${phone.data.brand}
+                
+                <br> <span class="fw-bold">ReleaseDate: </span> ${phone.data.releaseDate ? phone.data.releaseDate :"on info"}
+
+                 <br> <span class="fw-bold">ChipSet: </span> ${phone.data.mainFeatures.storage}
+                 <br><span class="fw-bold">Memory: </span> ${phone.data.mainFeatures.memory}
+                
+                <br><span class="fw-bold">Display Size : </span> ${phone.data.mainFeatures.displaySize}
+                <br><span class="fw-bold">Storage : </span> ${phone.data.mainFeatures.storage}
+                <br><span class="fw-bold">Sensors : </span> ${phone.data.mainFeatures.sensors}
+                <br><span class="fw-bold">Bluetooth : </span> ${phone.data.others.Bluetooth}
+                <br><span class="fw-bold">WLAN : </span> ${phone.data.others.WLAN}
+                <br><span class="fw-bold">GPS : </span> ${phone.data.others.GPS}
+                <br><span class="fw-bold">USB : </span> ${phone.data.others.USB}
+                <br><span class="fw-bold">Radio : </span> ${phone.data.others.Radio}
+                <br><span class="fw-bold">NFC : </span> ${phone.data.others.NFC}
+              
+                
+                
+                
+                </p>
+                
+                
             </div>
     </div>
     </div>
